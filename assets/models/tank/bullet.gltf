@@ -1,0 +1,230 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 189,
+      "type": "VEC3",
+      "max": [
+        0.14935405552387238,
+        0.14935407042503357,
+        0.4606306254863739
+      ],
+      "min": [
+        -0.14935405552387238,
+        -0.14935405552387238,
+        -0.064630582928657532
+      ]
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 189,
+      "type": "VEC3",
+      "max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 189,
+      "type": "VEC4",
+      "max": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -0.858562707901001,
+        -1.0
+      ]
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 189,
+      "type": "VEC2",
+      "max": [
+        1.0,
+        1.0
+      ],
+      "min": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 189,
+      "type": "VEC2",
+      "max": [
+        0.91748052835464478,
+        0.99609375
+      ],
+      "min": [
+        0.00390625,
+        0.016300678253173828
+      ]
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5121,
+      "count": 426,
+      "type": "SCALAR",
+      "max": [
+        188.0
+      ],
+      "min": [
+        0.0
+      ]
+    }
+  ],
+  "asset": {
+    "version": "2.0"
+  },
+  "buffers": [
+    {
+      "uri": "bullet.bin",
+      "byteLength": 11012
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 2268
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 2268,
+      "byteLength": 2268
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 4536,
+      "byteLength": 3024
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 7560,
+      "byteLength": 1512
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 9072,
+      "byteLength": 1512
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 10584,
+      "byteLength": 428
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1.0,
+          0.669776857,
+          0.0862745047,
+          1.0
+        ],
+        "roughnessFactor": 0.699999988079071
+      },
+      "emissiveFactor": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "name": "Gold"
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3,
+            "TEXCOORD_1": 4
+          },
+          "indices": 5,
+          "material": 0
+        }
+      ],
+      "name": "bullet"
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "mesh": 0,
+      "translation": [
+        1.252,
+        1.55,
+        0.0
+      ],
+      "name": "bullet"
+    },
+    {
+      "children": [
+        2,
+        3
+      ],
+      "rotation": [
+        -0.707106,
+        0.0,
+        0.0,
+        0.7071076
+      ],
+      "name": "bulletExplosion"
+    },
+    {
+      "rotation": [
+        0.007478263,
+        -0.09721365,
+        -0.0007302496,
+        0.9952352
+      ],
+      "scale": [
+        1.00000012,
+        1.0,
+        1.0
+      ],
+      "name": "Trails"
+    },
+    {
+      "rotation": [
+        0.707106,
+        0.0,
+        0.0,
+        0.7071076
+      ],
+      "name": "Burst"
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ],
+      "name": "bullet"
+    }
+  ]
+}
