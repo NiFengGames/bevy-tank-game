@@ -1,9 +1,9 @@
-use std::f32::consts::*;
-
 use bevy::{
     pbr::{CascadeShadowConfigBuilder, DirectionalLightShadowMap},
     prelude::*,
 };
+use bevy_tank_game::plugins::first_person_camera::FirstPersionCameraPlugin;
+use std::f32::consts::*;
 
 fn main() {
     App::new()
@@ -13,23 +13,17 @@ fn main() {
         })
         .insert_resource(DirectionalLightShadowMap { size: 4096 })
         .add_plugins(DefaultPlugins)
+        .add_plugins(FirstPersionCameraPlugin)
         .add_systems(Startup, setup)
         .add_systems(Update, animate_light_direction)
         .run();
 }
 
 fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
-    commands.spawn((
-        Camera3dBundle {
-            transform: Transform::from_xyz(13.3, 13.3, 13.0)
-                .looking_at(Vec3::new(0.0, 0.0, 0.0), Vec3::Y),
-            ..default()
-        },
-        EnvironmentMapLight {
-            diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
-            specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
-        },
-    ));
+    commands.spawn((EnvironmentMapLight {
+        diffuse_map: asset_server.load("environment_maps/pisa_diffuse_rgb9e5_zstd.ktx2"),
+        specular_map: asset_server.load("environment_maps/pisa_specular_rgb9e5_zstd.ktx2"),
+    },));
 
     commands.spawn(DirectionalLightBundle {
         directional_light: DirectionalLight {

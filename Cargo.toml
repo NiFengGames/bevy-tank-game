@@ -9,3 +9,4 @@ edition = "2021"
 bevy = "0.11.1"
 bevy_egui = "0.21"
 bevy_rapier3d = { version = "*", features = [ "simd-stable", "debug-render-3d" ] }
+lazy_static = "*"
