@@ -2,7 +2,7 @@ use bevy::{
     pbr::{CascadeShadowConfigBuilder, DirectionalLightShadowMap},
     prelude::*,
 };
-use bevy_tank_game::plugins::first_person_camera::FirstPersionCameraPlugin;
+use bevy_tank_game::plugins::first_person_camera::FirstPersonCameraPlugin;
 use std::f32::consts::*;
 
 fn main() {
@@ -13,7 +13,7 @@ fn main() {
         })
         .insert_resource(DirectionalLightShadowMap { size: 4096 })
         .add_plugins(DefaultPlugins)
-        .add_plugins(FirstPersionCameraPlugin)
+        .add_plugins(FirstPersonCameraPlugin)
         .add_systems(Startup, setup)
         .add_systems(Update, animate_light_direction)
         .run();

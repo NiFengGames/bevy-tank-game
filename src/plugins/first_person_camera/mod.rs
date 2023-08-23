@@ -3,9 +3,9 @@ use bevy::prelude::*;
 pub mod components;
 mod resources;
 mod systems;
-pub struct FirstPersionCameraPlugin;
+pub struct FirstPersonCameraPlugin;
 
-impl Plugin for FirstPersionCameraPlugin {
+impl Plugin for FirstPersonCameraPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<resources::Resources>()
             .add_systems(Startup, systems::add_camera)

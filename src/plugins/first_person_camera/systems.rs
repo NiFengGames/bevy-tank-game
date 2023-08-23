@@ -1,4 +1,4 @@
-use super::{components::FirstPersionCamera, resources};
+use super::{components::FirstPersonCamera, resources};
 use bevy::input::mouse::MouseMotion;
 use bevy::prelude::*;
 pub fn add_camera(mut commands: Commands) {
@@ -8,14 +8,14 @@ pub fn add_camera(mut commands: Commands) {
                 .looking_at(Vec3::new(0.0, 0.0, 0.0), Vec3::Y),
             ..default()
         },
-        FirstPersionCamera,
+        FirstPersonCamera,
     ));
 }
 
 const SPEED: f32 = 1.0;
 
 pub fn update_camera(
-    mut camera_query: Query<&mut Transform, With<FirstPersionCamera>>,
+    mut camera_query: Query<&mut Transform, With<FirstPersonCamera>>,
     keyboard_input: Res<Input<KeyCode>>,
     buttons: Res<Input<MouseButton>>,
     mut motion_evr: EventReader<MouseMotion>,
