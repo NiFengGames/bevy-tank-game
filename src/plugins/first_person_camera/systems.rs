@@ -1,5 +1,5 @@
 use super::{components::FirstPersonCamera, resources};
-use bevy::input::mouse::MouseMotion;
+use bevy::input::mouse::{MouseMotion, MouseScrollUnit, MouseWheel};
 use bevy::prelude::*;
 pub fn add_camera(mut commands: Commands) {
     commands.spawn((
@@ -68,4 +68,24 @@ pub fn update_camera(
         }
     }
     // println!("update_camera");
+}
+
+pub fn update_camera_zoom(
+    mut camera_query: Query<&mut Transform, With<FirstPersonCamera>>,
+    mut mouse_wheel_reader: EventReader<MouseWheel>,
+) {
+    let mut camera = camera_query.get_single_mut().unwrap();
+
+    for event in mouse_wheel_reader.iter() {
+        match event.unit {
+            MouseScrollUnit::Line => {
+                let translation = camera.forward() * event.y;
+                camera.translation += translation
+            }
+            MouseScrollUnit::Pixel => {
+                let translation = camera.forward() * event.y;
+                camera.translation += translation
+            }
+        }
+    }
 }
