@@ -35,6 +35,12 @@ pub fn update_camera(
     } else if keyboard_input.pressed(KeyCode::Down) || keyboard_input.pressed(KeyCode::S) {
         let forward = camera.back();
         camera.translation += forward * SPEED;
+    } else if keyboard_input.pressed(KeyCode::E) {
+        let forward = camera.up();
+        camera.translation += forward * SPEED;
+    } else if keyboard_input.pressed(KeyCode::Q) {
+        let forward = camera.down();
+        camera.translation += forward * SPEED;
     }
     if buttons.pressed(MouseButton::Right) {
         resources.mousedown = true;

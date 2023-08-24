@@ -2,9 +2,11 @@ use bevy::{
     pbr::{CascadeShadowConfigBuilder, DirectionalLightShadowMap},
     prelude::*,
 };
-use bevy_tank_game::plugins::first_person_camera::FirstPersonCameraPlugin;
+use bevy_rapier3d::prelude::*;
+use bevy_tank_game::plugins::{
+    first_person_camera::FirstPersonCameraPlugin, scene::ScenePlugin, tank::TankPlugin,
+};
 use std::f32::consts::*;
-
 fn main() {
     App::new()
         .insert_resource(AmbientLight {
@@ -13,7 +15,11 @@ fn main() {
         })
         .insert_resource(DirectionalLightShadowMap { size: 4096 })
         .add_plugins(DefaultPlugins)
+        .add_plugins(RapierPhysicsPlugin::<NoUserData>::default())
+        .add_plugins(RapierDebugRenderPlugin::default())
         .add_plugins(FirstPersonCameraPlugin)
+        .add_plugins(ScenePlugin)
+        .add_plugins(TankPlugin)
         .add_systems(Startup, setup)
         .add_systems(Update, animate_light_direction)
         .run();
@@ -42,10 +48,10 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
         .into(),
         ..default()
     });
-    commands.spawn(SceneBundle {
-        scene: asset_server.load("models/tank/_Complete-Game.gltf#Scene0"),
-        ..default()
-    });
+    // commands.spawn(SceneBundle {
+    //     scene: asset_server.load("models/tank/_Complete-Game.gltf#Scene0"),
+    //     ..default()
+    // });
 }
 
 fn animate_light_direction(
@@ -56,7 +62,7 @@ fn animate_light_direction(
         transform.rotation = Quat::from_euler(
             EulerRot::ZYX,
             0.0,
-            time.elapsed_seconds() * PI / 5.0,
+            time.elapsed_seconds() * PI / 10.0,
             -FRAC_PI_4,
         );
     }
