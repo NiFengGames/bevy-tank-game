@@ -3,25 +3,30 @@ use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
 pub fn add(mut commands: Commands, asset_server: Res<AssetServer>) {
-    // commands.spawn((
-    //     SceneBundle {
-    //         scene: asset_server.load("models/tank/CompleteTank.gltf#Scene0"),
-    //         transform: Transform::from_xyz(0.0, 0.0, 0.0),
-    //         ..default()
-    //     },
-    //     Tank,
-    // ));
-    /* Create the bouncing ball. */
     commands
-        .spawn(RigidBody::Dynamic)
-        .insert(SceneBundle {
-            scene: asset_server.load("models/tank/CompleteTank.gltf#Scene0"),
-            transform: Transform::from_xyz(0.0, 0.0, 0.0),
-            ..default()
-        })
-        .insert(Collider::ball(0.5))
-        .insert(Restitution::coefficient(0.7))
-        .insert(TransformBundle::from(Transform::from_xyz(0.0, 10.0, 0.0)));
+        .spawn((
+            Tank,
+            // SceneBundle {
+            //     scene: asset_server.load("models/tank/CompleteTank.gltf#Scene0"),
+            //     transform: Transform::from_xyz(0.0, 10.0, 0.0),
+            //     ..default()
+            // },
+            RigidBody::Dynamic,
+            Collider::ball(0.5),
+            Restitution::coefficient(0.7),
+            // TransformBundle::from(Transform::from_xyz(0.0, 10.0, 0.0)),
+            SpatialBundle {
+                transform: Transform::from_xyz(0.0, 10.0, 0.0),
+                ..default()
+            },
+        ))
+        .with_children(|parent| {
+            parent.spawn(SceneBundle {
+                scene: asset_server.load("models/tank/CompleteTank.gltf#Scene0"),
+                transform: Transform::from_xyz(0.0, -0.5, 0.0),
+                ..default()
+            });
+        });
 }
 
 pub fn update(
