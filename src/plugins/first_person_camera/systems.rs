@@ -13,6 +13,8 @@ pub fn add_camera(mut commands: Commands) {
 }
 
 const SPEED: f32 = 1.0;
+const ZOOM_MIN: f32 = 4.0;
+const ZOOM_MAX: f32 = 24.0;
 
 pub fn update_camera(
     mut camera_query: Query<&mut Transform, With<FirstPersonCamera>>,
@@ -80,11 +82,21 @@ pub fn update_camera_zoom(
         match event.unit {
             MouseScrollUnit::Line => {
                 let translation = camera.forward() * event.y;
-                camera.translation += translation
+                camera.translation += translation;
+                if camera.translation.z < ZOOM_MIN {
+                    camera.translation = Vec3::new(ZOOM_MIN, ZOOM_MIN, ZOOM_MIN);
+                } else if camera.translation.z > ZOOM_MAX {
+                    camera.translation = Vec3::new(ZOOM_MAX, ZOOM_MAX, ZOOM_MAX);
+                }
             }
             MouseScrollUnit::Pixel => {
                 let translation = camera.forward() * event.y;
-                camera.translation += translation
+                camera.translation += translation;
+                if camera.translation.z < ZOOM_MIN {
+                    camera.translation = Vec3::new(ZOOM_MIN, ZOOM_MIN, ZOOM_MIN);
+                } else if camera.translation.z > ZOOM_MAX {
+                    camera.translation = Vec3::new(ZOOM_MAX, ZOOM_MAX, ZOOM_MAX);
+                }
             }
         }
     }
