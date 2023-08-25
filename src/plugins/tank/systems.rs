@@ -1,4 +1,4 @@
-use super::{components::Tank, resources};
+use super::components::Tank;
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
