@@ -1,5 +1,5 @@
 use super::{components::FirstPersonCamera, resources};
-use bevy::input::mouse::MouseMotion;
+use bevy::input::mouse::{MouseMotion, MouseScrollUnit, MouseWheel};
 use bevy::prelude::*;
 pub fn add_camera(mut commands: Commands) {
     commands.spawn((
@@ -13,6 +13,8 @@ pub fn add_camera(mut commands: Commands) {
 }
 
 const SPEED: f32 = 1.0;
+const ZOOM_MIN: f32 = 4.0;
+const ZOOM_MAX: f32 = 24.0;
 
 pub fn update_camera(
     mut camera_query: Query<&mut Transform, With<FirstPersonCamera>>,
@@ -68,4 +70,34 @@ pub fn update_camera(
         }
     }
     // println!("update_camera");
+}
+
+pub fn update_camera_zoom(
+    mut camera_query: Query<&mut Transform, With<FirstPersonCamera>>,
+    mut mouse_wheel_reader: EventReader<MouseWheel>,
+) {
+    let mut camera = camera_query.get_single_mut().unwrap();
+
+    for event in mouse_wheel_reader.iter() {
+        match event.unit {
+            MouseScrollUnit::Line => {
+                let translation = camera.forward() * event.y;
+                camera.translation += translation;
+                if camera.translation.z < ZOOM_MIN {
+                    camera.translation = Vec3::new(ZOOM_MIN, ZOOM_MIN, ZOOM_MIN);
+                } else if camera.translation.z > ZOOM_MAX {
+                    camera.translation = Vec3::new(ZOOM_MAX, ZOOM_MAX, ZOOM_MAX);
+                }
+            }
+            MouseScrollUnit::Pixel => {
+                let translation = camera.forward() * event.y;
+                camera.translation += translation;
+                if camera.translation.z < ZOOM_MIN {
+                    camera.translation = Vec3::new(ZOOM_MIN, ZOOM_MIN, ZOOM_MIN);
+                } else if camera.translation.z > ZOOM_MAX {
+                    camera.translation = Vec3::new(ZOOM_MAX, ZOOM_MAX, ZOOM_MAX);
+                }
+            }
+        }
+    }
 }
