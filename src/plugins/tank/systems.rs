@@ -2,6 +2,8 @@ use super::components::Tank;
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
+const TANK_SPEED: f32 = 1.0;
+
 pub fn add(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands
         .spawn((
@@ -30,11 +32,23 @@ pub fn add(mut commands: Commands, asset_server: Res<AssetServer>) {
 }
 
 pub fn update(
-    // mut curr_query: Query<&mut Transform, With<Tank>>,
-    // mut resources: ResMut<resources::Resources>,
-    positions: Query<&Transform, With<RigidBody>>,
+    mut tank_query: Query<&mut Transform, With<Tank>>,
+    keyboard_input: Res<Input<KeyCode>>,
+    time: Res<Time>,
 ) {
-    // for transform in positions.iter() {
-    //     println!("Ball altitude: {}", transform.translation.y);
-    // }
+    if let Ok(mut transform) = tank_query.get_single_mut() {
+        let mut direction = Vec3::ZERO;
+
+        if keyboard_input.pressed(KeyCode::A) {
+            direction += Vec3::new(-1.0, 0.0, 0.0);
+        } else if keyboard_input.pressed(KeyCode::D) {
+            direction += Vec3::new(1.0, 0.0, 0.0);
+        } else if keyboard_input.pressed(KeyCode::W) {
+            direction += Vec3::new(0.0, 1.0, 0.0);
+        } else if keyboard_input.pressed(KeyCode::S) {
+            direction += Vec3::new(0.0, -1.0, 0.0);
+        }
+
+        transform.translation += direction * TANK_SPEED * time.delta_seconds();
+    }
 }

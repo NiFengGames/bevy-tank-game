@@ -72,6 +72,27 @@ pub fn update_camera(
     // println!("update_camera");
 }
 
+pub fn update_camera_move(
+    mut camera_query: Query<&mut Transform, With<FirstPersonCamera>>,
+    keyboard_input: Res<Input<KeyCode>>,
+    time: Res<Time>,
+) {
+    let mut camera = camera_query.get_single_mut().unwrap();
+
+    let mut direction = Vec3::ZERO;
+    if keyboard_input.pressed(KeyCode::A) {
+        direction += Vec3::new(-1.0, 0.0, 0.0);
+    } else if keyboard_input.pressed(KeyCode::D) {
+        direction += Vec3::new(1.0, 0.0, 0.0);
+    } else if keyboard_input.pressed(KeyCode::W) {
+        direction += Vec3::new(0.0, 1.0, 0.0);
+    } else if keyboard_input.pressed(KeyCode::S) {
+        direction += Vec3::new(0.0, -1.0, 0.0);
+    }
+
+    camera.translation += direction * SPEED * time.delta_seconds();
+}
+
 pub fn update_camera_zoom(
     mut camera_query: Query<&mut Transform, With<FirstPersonCamera>>,
     mut mouse_wheel_reader: EventReader<MouseWheel>,
@@ -84,18 +105,18 @@ pub fn update_camera_zoom(
                 let translation = camera.forward() * event.y;
                 camera.translation += translation;
                 if camera.translation.z < ZOOM_MIN {
-                    camera.translation = Vec3::new(ZOOM_MIN, ZOOM_MIN, ZOOM_MIN);
+                    camera.translation.z = ZOOM_MIN;
                 } else if camera.translation.z > ZOOM_MAX {
-                    camera.translation = Vec3::new(ZOOM_MAX, ZOOM_MAX, ZOOM_MAX);
+                    camera.translation.z = ZOOM_MAX;
                 }
             }
             MouseScrollUnit::Pixel => {
                 let translation = camera.forward() * event.y;
                 camera.translation += translation;
                 if camera.translation.z < ZOOM_MIN {
-                    camera.translation = Vec3::new(ZOOM_MIN, ZOOM_MIN, ZOOM_MIN);
+                    camera.translation.z = ZOOM_MIN;
                 } else if camera.translation.z > ZOOM_MAX {
-                    camera.translation = Vec3::new(ZOOM_MAX, ZOOM_MAX, ZOOM_MAX);
+                    camera.translation.z = ZOOM_MAX;
                 }
             }
         }
