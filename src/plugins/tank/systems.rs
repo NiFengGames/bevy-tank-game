@@ -40,13 +40,13 @@ pub fn update(
         let mut direction = Vec3::ZERO;
 
         if keyboard_input.pressed(KeyCode::A) {
-            direction += Vec3::new(-1.0, 0.0, 0.0);
+            direction = -Vec3::X;
         } else if keyboard_input.pressed(KeyCode::D) {
-            direction += Vec3::new(1.0, 0.0, 0.0);
+            direction = Vec3::X;
         } else if keyboard_input.pressed(KeyCode::W) {
-            direction += Vec3::new(0.0, 0.0, 1.0);
+            direction = -Vec3::Z;
         } else if keyboard_input.pressed(KeyCode::S) {
-            direction += Vec3::new(0.0, 0.0, -1.0);
+            direction = Vec3::Z;
         }
 
         transform.translation += direction * TANK_SPEED * time.delta_seconds();
