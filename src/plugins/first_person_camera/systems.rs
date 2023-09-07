@@ -85,9 +85,9 @@ pub fn update_camera_move(
     } else if keyboard_input.pressed(KeyCode::D) {
         direction += Vec3::new(1.0, 0.0, 0.0);
     } else if keyboard_input.pressed(KeyCode::W) {
-        direction += Vec3::new(0.0, 1.0, 0.0);
+        direction += Vec3::new(0.0, 0.0, 1.0);
     } else if keyboard_input.pressed(KeyCode::S) {
-        direction += Vec3::new(0.0, -1.0, 0.0);
+        direction += Vec3::new(0.0, 0.0, -1.0);
     }
 
     camera.translation += direction * SPEED * time.delta_seconds();
@@ -101,23 +101,17 @@ pub fn update_camera_zoom(
 
     for event in mouse_wheel_reader.iter() {
         match event.unit {
-            MouseScrollUnit::Line => {
-                let translation = camera.forward() * event.y;
-                camera.translation += translation;
-                if camera.translation.z < ZOOM_MIN {
-                    camera.translation.z = ZOOM_MIN;
-                } else if camera.translation.z > ZOOM_MAX {
-                    camera.translation.z = ZOOM_MAX;
+            MouseScrollUnit::Line | MouseScrollUnit::Pixel => {
+                let mut zoom: f32 = -event.y;
+                let y = camera.translation.y + zoom;
+                // 限制缩放范围
+                if y < ZOOM_MIN {
+                    zoom = zoom + (ZOOM_MIN - y);
+                } else if y > ZOOM_MAX {
+                    zoom = zoom - (y - ZOOM_MAX);
                 }
-            }
-            MouseScrollUnit::Pixel => {
-                let translation = camera.forward() * event.y;
-                camera.translation += translation;
-                if camera.translation.z < ZOOM_MIN {
-                    camera.translation.z = ZOOM_MIN;
-                } else if camera.translation.z > ZOOM_MAX {
-                    camera.translation.z = ZOOM_MAX;
-                }
+                // 滚轮滑动时 三维坐标移动相同的值
+                camera.translation += Vec3::splat(zoom);
             }
         }
     }

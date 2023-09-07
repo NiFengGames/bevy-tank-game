@@ -44,9 +44,9 @@ pub fn update(
         } else if keyboard_input.pressed(KeyCode::D) {
             direction += Vec3::new(1.0, 0.0, 0.0);
         } else if keyboard_input.pressed(KeyCode::W) {
-            direction += Vec3::new(0.0, 1.0, 0.0);
+            direction += Vec3::new(0.0, 0.0, 1.0);
         } else if keyboard_input.pressed(KeyCode::S) {
-            direction += Vec3::new(0.0, -1.0, 0.0);
+            direction += Vec3::new(0.0, 0.0, -1.0);
         }
 
         transform.translation += direction * TANK_SPEED * time.delta_seconds();
