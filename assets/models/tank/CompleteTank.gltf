@@ -630,8 +630,7 @@
             "POSITION": 0,
             "NORMAL": 1,
             "TANGENT": 2,
-            "TEXCOORD_0": 3,
-            "TEXCOORD_1": 4
+            "TEXCOORD_0": 3
           },
           "indices": 5,
           "material": 0
@@ -641,8 +640,7 @@
             "POSITION": 0,
             "NORMAL": 1,
             "TANGENT": 2,
-            "TEXCOORD_0": 3,
-            "TEXCOORD_1": 4
+            "TEXCOORD_0": 3
           },
           "indices": 6,
           "material": 1
@@ -652,8 +650,7 @@
             "POSITION": 7,
             "NORMAL": 8,
             "TANGENT": 9,
-            "TEXCOORD_0": 10,
-            "TEXCOORD_1": 11
+            "TEXCOORD_0": 10
           },
           "indices": 12,
           "material": 0
@@ -663,8 +660,7 @@
             "POSITION": 7,
             "NORMAL": 8,
             "TANGENT": 9,
-            "TEXCOORD_0": 10,
-            "TEXCOORD_1": 11
+            "TEXCOORD_0": 10
           },
           "indices": 13,
           "material": 1
@@ -679,8 +675,7 @@
             "POSITION": 14,
             "NORMAL": 15,
             "TANGENT": 16,
-            "TEXCOORD_0": 17,
-            "TEXCOORD_1": 18
+            "TEXCOORD_0": 17
           },
           "indices": 19,
           "material": 0
@@ -690,8 +685,7 @@
             "POSITION": 14,
             "NORMAL": 15,
             "TANGENT": 16,
-            "TEXCOORD_0": 17,
-            "TEXCOORD_1": 18
+            "TEXCOORD_0": 17
           },
           "indices": 20,
           "material": 2
@@ -701,8 +695,7 @@
             "POSITION": 14,
             "NORMAL": 15,
             "TANGENT": 16,
-            "TEXCOORD_0": 17,
-            "TEXCOORD_1": 18
+            "TEXCOORD_0": 17
           },
           "indices": 21,
           "material": 1
@@ -717,8 +710,7 @@
             "POSITION": 22,
             "NORMAL": 23,
             "TANGENT": 24,
-            "TEXCOORD_0": 25,
-            "TEXCOORD_1": 26
+            "TEXCOORD_0": 25
           },
           "indices": 27,
           "material": 0
@@ -728,8 +720,7 @@
             "POSITION": 22,
             "NORMAL": 23,
             "TANGENT": 24,
-            "TEXCOORD_0": 25,
-            "TEXCOORD_1": 26
+            "TEXCOORD_0": 25
           },
           "indices": 28,
           "material": 1
