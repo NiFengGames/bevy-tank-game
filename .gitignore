@@ -20,4 +20,4 @@ Cargo.lock
 .DS_Store
 *.log
 
-wasm/
+# wasm/
