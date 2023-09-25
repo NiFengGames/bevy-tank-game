@@ -11,6 +11,20 @@ pub fn add(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands
         .spawn(Collider::cuboid(100.0, 0.1, 100.0))
         .insert(TransformBundle::from(Transform::from_xyz(0.0, 0.0, 0.0)));
+
+    commands
+        .spawn(Collider::cuboid(100.0, 100.0, 0.1))
+        .insert(TransformBundle::from(Transform::from_xyz(0.0, 0.0, 50.0)));
+    commands
+        .spawn(Collider::cuboid(100.0, 100.0, 0.1))
+        .insert(TransformBundle::from(Transform::from_xyz(0.0, 0.0, -50.0)));
+
+    commands
+        .spawn(Collider::cuboid(0.1, 100.0, 100.0))
+        .insert(TransformBundle::from(Transform::from_xyz(50.0, 0.0, 0.0)));
+    commands
+        .spawn(Collider::cuboid(0.1, 100.0, 100.0))
+        .insert(TransformBundle::from(Transform::from_xyz(-50.0, 0.0, 0.0)));
 }
 
 pub fn update(

@@ -3,9 +3,7 @@ use bevy::{
     prelude::*,
 };
 use bevy_rapier3d::prelude::*;
-use bevy_tank_game::plugins::{
-    first_person_camera::FirstPersonCameraPlugin, scene::ScenePlugin, tank::TankPlugin,
-};
+use bevy_tank_game::plugins::{scene::ScenePlugin, tank::TankPlugin};
 use std::f32::consts::*;
 fn main() {
     App::new()
@@ -17,7 +15,7 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .add_plugins(RapierPhysicsPlugin::<NoUserData>::default())
         .add_plugins(RapierDebugRenderPlugin::default())
-        .add_plugins(FirstPersonCameraPlugin)
+        // .add_plugins(FirstPersonCameraPlugin)
         .add_plugins(ScenePlugin)
         .add_plugins(TankPlugin)
         .add_systems(Startup, setup)
