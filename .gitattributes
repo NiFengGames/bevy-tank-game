@@ -1,1 +1,5 @@
-*		text eol=lf
+*.wasm   binary
+*.js    text eol=lf
+*.ts    text eol=lf
+*.rs    text eol=lf
+*		text=auto
