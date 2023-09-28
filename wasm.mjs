@@ -17,8 +17,4 @@ if (argv.debug == 1) {
         console.log("请安装wasm-opt"); throw e;
     })
     await fs.emptyDir("web")
-    await fs.copy("wasm", "web/wasm")
-    await fs.copy("assets", "web/assets")
-    await fs.copy("index.html", "web/index.html")
-    await $`wrangler pages deploy web --project-name=bevy-tank-game --branch=main`
 }
